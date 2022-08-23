@@ -18,7 +18,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void createUsersTable() {
         String sql = new StringBuilder().append("create table if not exists ")
-                .append("pre_proj.users")
+                .append("users")
                 .append("(")
                 .append("id").append(" ").append("bigint not null primary key auto_increment,")
                 .append("name").append(" ").append("varchar(255) not null,")
@@ -41,7 +41,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String sql = "drop table if exists pre_proj.users cascade;";
+        String sql = "drop table if exists users cascade;";
         try (Session session = Util.getSessionFactory().openSession()){
             transaction = session.beginTransaction();
             session.createNativeQuery(sql).executeUpdate();
@@ -99,7 +99,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String sql = "delete from pre_proj.users";
+        String sql = "delete from users";
         {
             try (Session session = Util.getSessionFactory().openSession()){
                 transaction = session.beginTransaction();
